@@ -6,51 +6,38 @@ import favicon from "./assets/favicon.png"
 export default function App() {
   return (
     <ScrollView>
-      <View style={styles.container}>
-        <View style={styles.subContainerOne}>
-          <Image
-            source={favicon}
-            resizeMode={"center"}
-            style={styles.imageStyle}
-          />
-        </View>       
+      <View style={styles.container}>        
+        <Text style={styles.title}>나만의 꿀팁</Text>        
         <View style={styles.subContainerOne}>
           <Image
             style={styles.imageStyle}
             source={{
-              uri: 'https://images.unsplash.com/photo-1472457897821-70d3819a0e24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1738&q=80'
+              uri: 'https://firebasestorage.googleapis.com/v0/b/sparta-image.appspot.com/o/lecture%2Fmain.png?alt=media&token=8e5eb78d-19ee-4359-9209-347d125b322c'
             }}
             resizeMode={"cover"}
            />            
-        </View>        
-        <Button 
-          style={styles.buttonStyle}
-          title="파랑 버튼"
-          color='#6ab0f3'
-          onPress={function(){
-            Alert.alert("팝업 알람!")
-          }}
-        />
-        <Button 
-          style={styles.buttonStyle}
-          title="초록 버튼"
-          color='#92d192'
-          onPress={()=>{ Alert.alert("팝업 알람 화살표 함수로!")}}
-        />
-
-        <View style={styles.subContainerOne}>
-          <Text style={styles.mainText}>텍스트는 Text 태그 안에 넣어요.</Text>
-        </View>                     
-        
+        </View>                
         <View style={styles.subContainerTwo}>
-          <Text style={styles.subText}>서브 텍스트, 서브 텍스트</Text>
-          <Text style={styles.subText2}>서브 텍스트2, 서브 텍스트2</Text>
-          <View style={styles.subContainerTwo}> 
-            <Image
-              source={favicon}
-              resizeMode={"center"}
-              style={styles.imageStyle}
-            />   
+          <Text style={styles.tabText}>운동</Text>
+          <Text style={styles.tabText}>재테크</Text>
+          <Text style={styles.tabText}>취업</Text>
+          <Text style={styles.tabText}>미용</Text>
+        </View>           
+        <View style={styles.subContainerThree}>        
+          <Image
+            source={{
+              uri: 'https://firebasestorage.googleapis.com/v0/b/sparta-image.appspot.com/o/lecture%2Fpizza.png?alt=media&token=1a099927-d818-45d4-b48a-7906fd0d2ad3'
+            }}
+            resizeMode={"cover"}
+            style={styles.imageStyleSmall}
+          /> 
+          <View style={styles.innerContainer}>  
+            <Text style={[styles.textTitle, styles.title]}>
+            먹다 남은 피자를 촉촉하게!
+            </Text>
+            <Text numberOfLines={3} style={styles.textContent}>
+            먹다 남은 피자는 수분이 날라가기 때문에 처음처럼 맛있게 먹을 수 없는데요. 이럴 경우 그릇에 물을 받아 전자레인지 안에서 1분 30초에서 2분 정도 함께 돌려주면 촉촉하게 먹을 수 있습니다. 물이 전자레인지 안에서 수증기를 일으키고, 피자에 촉촉함을 더해줍니다.
+            </Text>
           </View>
         </View>   
         
@@ -61,26 +48,35 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    display: 'flex',        
+    flexDirection: 'comlumn',
     backgroundColor: '#fff',   
-  },
-  subContainerOne: {
-    height:200,
-    borderColor:'#000',
-    borderWidth:1,    
-    margin:10,
+    maxWidth: '450px',
     padding:10,
-    textAlign:"center",
+  },
+  subContainerOne: {  
+    display: 'flex',    
+    flexDirection: 'row',
+    height:'100%',           
+    textAlign:"left",    
   },
   subContainerTwo: {
-    flex:1,
-    flexDirection: "row",      
-    //backgroundColor:"blue",
+    display: 'flex',    
+    flexDirection: 'row',    
+    height:'60px',
+    textAlign:"center",
+  },  
+
+  subContainerThree: {  
+    display: 'flex',    
+    flexDirection: 'row',
+    height:'100%',           
+    padding:10,      
   },
 
-  buttonStyle: {
-    margin:10,
-    width:200,
+  innerContainer: {
+    width: '70%',
+    marginLeft: '5%',
   },
 
   imageStyle: {
@@ -88,16 +84,52 @@ const styles = StyleSheet.create({
     height:"100%",
     alignItems:"center",
     justifyContent:"center",
+    borderRadius: 10,
   },
 
-  subText: {
+  imageStyleSmall: {
+    flexDirection: 'row',
+    width:"25%",
+    height:"50%",
+    borderRadius: 10,
+    //borderWidth: 2,
+  },
+
+  tabText: {
     backgroundColor:"#4caf50",
     color:"#ffffff",
-    padding:10,  
+    padding:10, 
+    margin:10,
+    height:'40px',
+    width:'25%',
+    borderRadius: 10,    
   },
   
+  textTitle: {
+    flexDirection: 'column',
+  },
+
   subText2: {
     backgroundColor:"#ff7f50",
     padding:10,  
   },
+
+  title: {    
+    fontSize: '16px',
+    fontWeight: '600',
+    marginBottom: 10,
+  },
+
+  buttonWrap: {
+    flex:1,     
+    flexDirection: 'row',   
+  },
+
+  buttonStyle: {    
+    width: '100%',
+    margin:10,    
+    borderColor:'#06bcee',
+    borderWidth:1,
+  },
+
 });
