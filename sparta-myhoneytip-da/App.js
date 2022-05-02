@@ -1,12 +1,18 @@
 //import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View, Button, Alert, Image, LayoutAnimation, TouchableOpacity } from 'react-native';
+import data from './data.json';
 
 
 export default function App() {
+  let tip = data.tip;
+  let todayWeather = 10 + 17;
+  let todayCondition = '흐림'
+
   return (    
     <ScrollView style={styles.container}>       
         <Text style={styles.title}>나만의 꿀팁</Text> 
+        <Text style={styles.weather}>오늘의 날씨: {todayWeather + '°C ' + todayCondition}</Text>
           <Image
             style={styles.mainImage}
             source={{
@@ -22,7 +28,21 @@ export default function App() {
           <TouchableOpacity style={styles.middleButton04}><Text style={styles.middleButtonText}>미용</Text></TouchableOpacity>          
         </ScrollView>       
         <View style={styles.subContainer}> 
-          <View style={styles.innerContainer}>  
+            {
+              tip.map((content, i)=>{
+                return (<View style={styles.innerContainer} key={i}>
+                    <Image style={styles.innerImg} source={{uri:content.image}}/>
+                    <View style={styles.innerText}>
+                      <Text style={styles.innerTextTitle} numberOfLines={1}>{content.title}</Text>
+                      <Text numberOfLines={3} style={styles.textContent}>{content.desc}</Text>
+                      <Text style={styles.textDate}>{content.date}</Text>
+                    </View>
+                  </View>
+                  )
+              })
+            }
+          {/* <View style={styles.innerContainer}>  
+            
             <Image style={styles.innerImg}
               source={{
                 uri: 'https://firebasestorage.googleapis.com/v0/b/sparta-image.appspot.com/o/lecture%2Fpizza.png?alt=media&token=1a099927-d818-45d4-b48a-7906fd0d2ad3'
@@ -38,7 +58,7 @@ export default function App() {
               </Text>
               <Text style={styles.textDate}>2020.09.09</Text>
             </View>
-          </View>
+          </View> */}
         </View>        
 
       </ScrollView>
@@ -58,6 +78,12 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   
+  weather: {
+    alignSelf: "flex-end",
+    paddingRgith:20,
+    marginBottom:10,
+  },
+
   mainImage: {    
     width:'90%',   
     height:200,    
