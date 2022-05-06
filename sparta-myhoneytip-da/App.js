@@ -30,35 +30,23 @@ export default function App() {
         <View style={styles.subContainer}> 
             {
               tip.map((content, i)=>{
-                return (<View style={styles.innerContainer} key={i}>
+                return i % 2 == 0 ? (<View style={[styles.cardEven, styles.innerContainer]} key={i}>
                     <Image style={styles.innerImg} source={{uri:content.image}}/>
                     <View style={styles.innerText}>
                       <Text style={styles.innerTextTitle} numberOfLines={1}>{content.title}</Text>
                       <Text numberOfLines={3} style={styles.textContent}>{content.desc}</Text>
                       <Text style={styles.textDate}>{content.date}</Text>
                     </View>
-                  </View>
-                  )
+                  </View>) : (<View style={[styles.cardOdd, styles.innerContainer]} key={i}>
+                    <Image style={styles.innerImg} source={{uri:content.image}}/>
+                    <View style={styles.innerText}>
+                      <Text style={styles.innerTextTitle} numberOfLines={1}>{content.title}</Text>
+                      <Text numberOfLines={3} style={styles.textContent}>{content.desc}</Text>
+                      <Text style={styles.textDate}>{content.date}</Text>
+                    </View>
+                  </View>)
               })
-            }
-          {/* <View style={styles.innerContainer}>  
-            
-            <Image style={styles.innerImg}
-              source={{
-                uri: 'https://firebasestorage.googleapis.com/v0/b/sparta-image.appspot.com/o/lecture%2Fpizza.png?alt=media&token=1a099927-d818-45d4-b48a-7906fd0d2ad3'
-              }}
-              resizeMode={"cover"}
-            /> 
-            <View style={styles.innerText}>
-              <Text style={styles.innerTextTitle}>
-              먹다 남은 피자를 촉촉하게!
-              </Text>
-              <Text numberOfLines={3} style={styles.textContent}>
-              먹다 남은 피자는 수분이 날라가기 때문에 처음처럼 맛있게 먹을 수 없는데요. 이럴 경우 그릇에 물을 받아 전자레인지 안에서 1분 30초에서 2분 정도 함께 돌려주면 촉촉하게 먹을 수 있습니다. 물이 전자레인지 안에서 수증기를 일으키고, 피자에 촉촉함을 더해줍니다.
-              </Text>
-              <Text style={styles.textDate}>2020.09.09</Text>
-            </View>
-          </View> */}
+            }         
         </View>        
 
       </ScrollView>
@@ -168,6 +156,26 @@ const styles = StyleSheet.create({
   textDate: {
     fontSize:10,
     color:"#A6A6A6",
+  },
+
+  cardEven: {
+    flex: 1,
+    flexDirection: "row",
+    margin: 10,
+    backgroundColor: "#fffed7",
+    borderRadius: 20,
+    borderBottomWidth: 0.5,
+    borderBottomColor: "#eee",
+    paddingBottom: 10,
+  },
+
+  cardOdd: {
+    flex: 1,
+    flexDirection:"row",
+    margin:10,
+    borderBottomWidth: 0.5,
+    borderBottomColor:"#eee",
+    paddingBottom:10,
   },
 
 });
